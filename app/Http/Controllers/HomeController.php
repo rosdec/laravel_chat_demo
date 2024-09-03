@@ -33,7 +33,7 @@ class HomeController extends Controller
         $messages = Message::with('user')->get()->append('time');
 
         return response()->json($messages);
-    }
+    } 
 
     public function message(Request $request): JsonResponse
     {
