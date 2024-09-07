@@ -8,17 +8,22 @@
 
 <body>
     <div class="min-h-screen bg-gray-100" id="app">
-        <header >
+        <header>
             @if (Route::has('login'))
             <nav>
-                @auth 
+                @auth
                 <div id="app">
-                    <app     
+                    <app
                         :is-auth="{{ json_encode(auth()->check()) }}"
                         :user="{{ auth()->check() ? auth()->user() : 'null' }}">></app>
                 </div>
-                <a href="{{ route('logout') }}"> Log out </a>
-                @else
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form> @else
                 <a href="{{ route('login') }}"> Log in </a>
                 @if (Route::has('register'))
                 <a href="{{ route('register') }}"> Register </a>
