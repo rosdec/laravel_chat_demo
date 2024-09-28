@@ -11,14 +11,10 @@ use Illuminate\Queue\SerializesModels;
 class GotMessage implements ShouldBroadcast {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct(public array $message) {
-        //
+    public function __construct() {
     }
 
-    public function broadcastOn(): array {
-        // $this->message is available here
-        return [
-            new PrivateChannel("channel_for_everyone"),
-        ];
+    public function broadcastOn() {
+        return  new PrivateChannel("channel_for_everyone");
     }
 }
